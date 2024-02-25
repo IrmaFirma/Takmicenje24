@@ -1,43 +1,32 @@
 #include <iostream>
 using namespace std;
 /*Napisi program koji ispisuje broj razlicitih brojeva iz niza ucitanih prirodnih brojeva. Ucitani niz moze imati najvise 50 brojeva.*/
-//Primjer: 1 2 3 2 1 izlaz je 3
+//Primjer: n = 5 unos je  1 2 3 2 1 izlaz je 3
 
 int main() {
-    // Unos niza prirodnih brojeva
-    cout << "Unesite prirodne brojeve (do 50 brojeva, unesite -1 za kraj unosa): ";
 
-    const int maksimalnaVelicinaNiza = 50;
-    int niz[maksimalnaVelicinaNiza];
-    int uneseniBroj;
-    int brojElemenata = 0;
+  int n;
+  cin>>n;
+  int niz[n];
+  int br = 0;
 
-    // Učitavanje brojeva sve dok nije unesen -1 ili dostignuta maksimalna veličina niza
-    while (cin >> uneseniBroj && uneseniBroj != -1 && brojElemenata < maksimalnaVelicinaNiza) {
-        niz[brojElemenata] = uneseniBroj;
-        brojElemenata++;
+  for(int i = 0; i<n; i++){
+    cin>>niz[i];
+  }
+  
+  for(int i = 0; i<n; i++){
+    int j;
+    for(j = 0; j<i; j++){
+      if(niz[i] == niz[j]){
+        break;
+      }
     }
-
-    // Provjera različitih brojeva
-    int brojRazlicitih = 0;
-
-    for (int i = 0; i < brojElemenata; i++) {
-        bool razlicit = true;
-
-        for (int j = 0; j < i; j++) {
-            if (niz[i] == niz[j]) {
-                razlicit = false;
-                break;
-            }
-        }
-
-        if (razlicit) {
-            brojRazlicitih++;
-        }
+    if(i==j){
+      br++;
     }
+  }
 
-    // Ispis rezultata
-    cout << "Broj razlicitih brojeva u nizu: " << brojRazlicitih << endl;
+  cout<<br;
 
-    return 0;
+  return 0;
 }
