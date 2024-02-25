@@ -1,39 +1,23 @@
 #include <iostream>
 using namespace std;
-/*Napisati program koji ce za uneseni prirodni broj n<1000 ispisati sve proste brojeve u intervalu n,2n.*/
+//Napisati program koji ce za uneseni prirodni broj n<1000 ispisati sve proste brojeve u intervalu n,2n.
 //Primjer: 10 ispis treba biti 11 13 17 19
 
+bool jeProst(int n){
+  bool jeProst = true;
+  for(int i = 2; i<n/2; i++){
+    if(n%i == 0) jeProst = false;
+  }
+  return jeProst;
+}
+
 int main() {
-    // Unos prirodnog broja n
-    cout << "Unesite prirodan broj n (n<1000): ";
-    int n;
-    cin >> n;
 
-    // Provjera uvjeta
-    if (n >= 1000 || n <= 0) {
-        cout << "Uneseni broj nije u dozvoljenom rasponu." << endl;
-        return 1;
-    }
+  int n;
+  cin>>n;
+  for(int i = n; i<=2*n; i++){
+    if(jeProst(i)) cout<<i<<" ";
+  }
 
-    // Ispis prostih brojeva u intervalu [n, 2n]
-    cout << "Prosti brojevi u intervalu [" << n << ", " << 2 * n << "]: ";
-
-    for (int i = n; i <= 2 * n; i++) {
-        bool prost = true;
-
-        for (int j = 2; j <= i / 2; j++) {
-            if (i % j == 0) {
-                prost = false;
-                break;
-            }
-        }
-
-        if (prost) {
-            cout << i << " ";
-        }
-    }
-
-    cout << endl;
-
-    return 0;
+  return 0;
 }
